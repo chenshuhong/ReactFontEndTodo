@@ -1,0 +1,33 @@
+{
+  "name": "react_fontend_todo",
+  "version": "0.0.1",
+  "description": "a todo project with react",
+  "keywords": [
+    "react"
+  ],
+  "main": "src/index.js",
+  "scripts": {},
+  "author": "chenshuhong",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "babel-loader": "^8.0.4",
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
+    "postcss": "^7.0.5",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9",
+    "webpack-merge": "^4.1.4"
+  },
+  "dependencies": {
+    "antd": "^3.10.0",
+    "normalize.css": "^8.0.0"
+  }
+}
