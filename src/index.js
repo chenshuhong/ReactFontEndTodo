@@ -4,8 +4,15 @@
  */
 import ReactDom from 'react-dom'
 import React from "react";
+import TodoList from './components/TodoList'
+
+let data = [
+  'List One',
+  'List Two',
+  'List Three',
+]
 
 const element = (
-  <div>hello react</div>
+  <TodoList dataSource={data}/>
 )
 ReactDom.render(element,document.getElementById('root'))
