@@ -2,4 +2,8 @@ const presets = [
   ["@babel/env"],["@babel/preset-react"]
 ];
 
-module.exports = { presets };
+const plugins = [
+  ["import",{"libraryName":"antd", "style": "css" }]
+]
+
+module.exports = { presets, plugins};

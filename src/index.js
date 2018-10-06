@@ -4,15 +4,10 @@
  */
 import ReactDom from 'react-dom'
 import React from "react";
+import './index.less'
 import TodoList from './components/TodoList'
 
-let data = [
-  'List One',
-  'List Two',
-  'List Three',
-]
-
 const element = (
-  <TodoList dataSource={data}/>
+  <TodoList/>
 )
 ReactDom.render(element,document.getElementById('root'))
