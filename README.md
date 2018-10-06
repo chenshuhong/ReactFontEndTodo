@@ -1,7 +1,3 @@
-# 全栈TODO系列（一）:React TODO List
-
-这个系列将从一个 todo list 开始，延伸到全栈的我所知道的一切知识，前端框架用react，ui库用antd（ui库非必需，就是为了好看），开干吧！
-
 ## 项目搭建
 
 虽然是个todo list,但这个todo list会沿着全栈这条链延伸下去，所以我决定用webpack4构建它，一下是用到的技术栈
@@ -31,5 +27,3 @@ ReactDom.render(element,document.getElementById('root'))
 ```
 
 npm run start即可自动构建，并在浏览器里打开看到hell react
-
-[项目地址](https://github.com/chenshuhong/ReactFontEndTodo/tree/react)
