@@ -7,6 +7,6 @@ import {List} from 'antd'
 const ListItem = List.Item
 export default function (props) {
   return (
-    <ListItem>{props.item}</ListItem>
+    <ListItem actions={[<a onClick={props.onDeleteItem}>delete</a>, <a onClick={props.showEditModel}>edit</a>]}>{props.item}</ListItem>
   )
 }
