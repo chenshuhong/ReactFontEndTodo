@@ -6,28 +6,22 @@ import React from "react";
 import {
   HashRouter as Router,
   Route,
-  Link
 } from 'react-router-dom'
 import Sider from 'components/Sider/index'
-import TodoList from 'components/TodoList/index'
-import Crypto from 'page/Crypto/index'
 import style from './index.less'
-
-const Home = () => (
-  <div>
-    <h2>Home</h2>
-  </div>
-)
+import {routes,routesFlat} from 'src/routes.config'
 
 export default function (props) {
   return (
     <Router>
       <div className={style.matchscreen}>
-        <Sider className={style.left}/>
+        <Sider className={style.left} routes={routes}/>
         <div className={style.right}>
-          <Route exact path="/" component={Home}/>
-          <Route path="/todolist" component={TodoList}/>
-          <Route path="/crypto" component={Crypto}/>
+          {
+            routesFlat.map(route=>(
+              <Route key={route.path} path={route.path} component={route.component}/>
+            ))
+          }
         </div>
       </div>
     </Router>
