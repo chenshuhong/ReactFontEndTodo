@@ -4,19 +4,23 @@
  */
 import TodoList from 'components/TodoList'
 import Crypto from 'page/Crypto'
-import {flattenDeep} from 'lodash'
-let routes = [
-  {
+import ECharts from 'page/DateVisualization/ECharts'
+
+let routes = [{
     path:'/todolist',
     name:'todolist',
     component:TodoList
-  },
-  {
-    path:'/crypto',
-    name:'crypto',
-    component:Crypto
+  },{
+    path:'/datavisualization',
+    name:'数据可视化',
+    routes:[
+      {
+        path:'/echarts',
+        name:'Echarts',
+        component:ECharts
+      }
+    ]
   }
 ]
-//数组扁平化
-let routesFlat = flattenDeep(routes)
-export {routes,routesFlat}
+
+export default routes

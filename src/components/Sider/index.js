@@ -13,16 +13,16 @@ export default class extends React.Component {
     super(props)
   }
 
-  loopRoutes(routes){
+  loopRoutes(routes,parentPath=''){
     return routes.map(route=>{
       return route.routes?(
-        <SubMenu key={route.path} title={<span><Icon type={route.icon}/>{route.name}</span>}>
+        <SubMenu key={route.path} title={<span>{route.icon&&<Icon type={route.icon}/>}{route.name}</span>}>
           {
-            this.loopRoutes(route.routes)
+            this.loopRoutes(route.routes,route.path)
           }
         </SubMenu>
       ):(
-        <Menu.Item key={route.path}><Link to={route.path}><Icon type={route.icon}/>{route.name}</Link></Menu.Item>
+        <Menu.Item key={route.path}><Link to={parentPath+route.path}>{route.icon&&<Icon type={route.icon}/>}{route.name}</Link></Menu.Item>
       )
     })
   }
