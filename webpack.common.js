@@ -39,7 +39,8 @@ module.exports = {
   resolve: {
     //设置别名
     alias:{
-      components:path.resolve(__dirname,'src/components')
+      components:path.resolve(__dirname,'src/components'),
+      page:path.resolve(__dirname,'src/page')
     }
   },
   module: {

@@ -5,7 +5,7 @@
 import ReactDom from 'react-dom'
 import React from "react";
 import './index.less'
-import App from 'components/App'
+import App from 'page/App'
 
 const element = (
   <App/>

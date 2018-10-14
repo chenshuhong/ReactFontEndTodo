@@ -8,8 +8,9 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import Sider from 'components/Sider'
-import TodoList from 'components/TodoList'
+import Sider from 'components/Sider/index'
+import TodoList from 'components/TodoList/index'
+import Crypto from 'page/Crypto/index'
 import style from './index.less'
 
 const Home = () => (
@@ -26,6 +27,7 @@ export default function (props) {
         <div className={style.right}>
           <Route exact path="/" component={Home}/>
           <Route path="/todolist" component={TodoList}/>
+          <Route path="/crypto" component={Crypto}/>
         </div>
       </div>
     </Router>

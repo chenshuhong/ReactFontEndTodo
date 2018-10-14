@@ -39,6 +39,7 @@ export default class extends React.Component {
         className={this.props.className}>
         <SubMenu key="sub1" title={<span><Icon type="mail" /><span>Navigation One</span></span>}>
           <Menu.Item key="todolist"><Link to='/todolist'>TodoList</Link></Menu.Item>
+          <Menu.Item key="crypto"><Link to='/crypto'>crypto</Link></Menu.Item>
         </SubMenu>
       </Menu>
     );
