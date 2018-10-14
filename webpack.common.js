@@ -2,6 +2,24 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
+function getCssModuleLoaders(isOpenCssModule,isLess) {
+  let loaders =  [
+    'style-loader',
+    {
+      loader: 'css-loader',
+      options:{
+        modules:isOpenCssModule,//开启css module
+        localIdentName:'[local]-[hash:base64:8]'
+      }
+    },
+    'postcss-loader',
+  ]
+  if (isLess){
+    loaders = loaders.concat('less-loader')
+  }
+  return loaders
+}
+
 module.exports = {
   entry: './src/index.js',
   devServer: {
@@ -18,22 +36,29 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
+  resolve: {
+    //设置别名
+    alias:{
+      components:path.resolve(__dirname,'src/components')
+    }
+  },
   module: {
     rules: [{
       test: /\.(css)$/,
-      use: [
-        'style-loader',
-        'css-loader',
-        'postcss-loader',
-      ]
+      use: getCssModuleLoaders(false,false),
+      include:path.resolve(__dirname,'node_modules')
     },{
       test: /\.(less)$/,
-      use: [
-        'style-loader',
-        'css-loader',
-        'postcss-loader',
-        'less-loader'
-      ]
+      use: getCssModuleLoaders(false,true),
+      include:path.resolve(__dirname,'node_modules')
+    },{
+      test: /\.(css)$/,
+      use: getCssModuleLoaders(true,false),
+      exclude:path.resolve(__dirname,'node_modules')
+    },{
+      test: /\.(less)$/,
+      use: getCssModuleLoaders(true,true),
+      exclude:path.resolve(__dirname,'node_modules')
     }, {
       test: /\.js$/,
       exclude: /node_modules/,

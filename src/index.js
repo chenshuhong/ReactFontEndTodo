@@ -5,9 +5,9 @@
 import ReactDom from 'react-dom'
 import React from "react";
 import './index.less'
-import TodoList from './components/TodoList'
+import App from 'components/App'
 
 const element = (
-  <TodoList/>
+  <App/>
 )
 ReactDom.render(element,document.getElementById('root'))
