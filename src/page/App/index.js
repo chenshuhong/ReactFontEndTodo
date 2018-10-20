@@ -4,34 +4,43 @@
  */
 import React from "react";
 import {
-  HashRouter as Router, Link,
+  HashRouter as Router,
   Route,
+  Switch
 } from 'react-router-dom'
 import Sider from 'components/Sider/index'
+import NoMatch from 'page/NoMatch'
 import style from './index.less'
 import routes from 'src/routes.config'
-import {Icon} from "antd";
-import {Menu} from "antd/lib/menu";
 
 export default function (props) {
-  function loopRoutes(routes,parentPath=''){
-    return routes.map(route=>{
-      return route.routes?(
-        <React.Fragment key={route.path}>
-          {
-            loopRoutes(route.routes,route.path)
-          }
-        </React.Fragment>
-      ):(
-        <Route key={route.path} path={parentPath+route.path} component={route.component}/>
-      )
-    })
+  function loopRoutes(routes,match={}){
+    let matchPath = match.path||''
+    return (
+      <Switch>
+        {
+          routes.map(route=>{
+            let routes = route.routes
+            if (routes){
+              return <Route key={route.path} path={route.path} render={({match})=>{
+                return loopRoutes(routes,match)
+              }}/>
+            } else {
+              return (
+                <Route exact key={route.path} path={matchPath+route.path} component={route.component}/>
+              )
+            }
+          })
+        }
+        <Route component={NoMatch}/>
+      </Switch>
+    )
   }
   return (
     <Router>
       <div className={style.matchscreen}>
         <Sider className={style.left} routes={routes}/>
-        <div className={style.right}>
+        <div  className={style.right}>
           {
             loopRoutes(routes)
           }
