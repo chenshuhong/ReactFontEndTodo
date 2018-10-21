@@ -4,6 +4,7 @@
  */
 import TodoList from 'components/TodoList'
 import Home from 'page/Home'
+import Crypto from 'page/Crypto'
 import ECharts from 'page/DateVisualization/ECharts'
 
 let routes = [{
