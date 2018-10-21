@@ -3,7 +3,8 @@ const presets = [
 ];
 
 const plugins = [
-  ["import",{"libraryName":"antd", "style": "css" }]
+  ["import",{"libraryName":"antd", "style": "css" }],
+  "@babel/plugin-syntax-dynamic-import"
 ]
 
 module.exports = { presets, plugins};

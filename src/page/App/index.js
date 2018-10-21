@@ -8,6 +8,8 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
+import Loadable from 'react-loadable'
+import RouterLoading from 'components/RouterLoading'
 import Sider from 'components/Sider/index'
 import NoMatch from 'page/NoMatch'
 import style from './index.less'
@@ -26,8 +28,12 @@ export default function (props) {
                 return loopRoutes(routes,match)
               }}/>
             } else {
+              const LoadableComponent = Loadable({
+                loader: () => route.component,
+                loading: RouterLoading,
+              })
               return (
-                <Route exact key={route.path} path={matchPath+route.path} component={route.component}/>
+                <Route exact key={route.path} path={matchPath+route.path} component={LoadableComponent}/>
               )
             }
           })

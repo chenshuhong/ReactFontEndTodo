@@ -2,19 +2,15 @@
  * @Author: 陈树鸿
  * @Date: 2018--15
  */
-import TodoList from 'components/TodoList'
-import Home from 'page/Home'
-import Crypto from 'page/Crypto'
-import ECharts from 'page/DateVisualization/ECharts'
 
 let routes = [{
   path: '/',
   name: '首页',
-  component: Home
+  component: import('page/Home')
 }, {
   path: '/todolist',
   name: 'todolist',
-  component: TodoList
+  component: import('components/TodoList')
 }, {
   path: '/datavisualization',
   name: '数据可视化',
@@ -22,7 +18,7 @@ let routes = [{
     {
       path: '/echarts',
       name: 'Echarts',
-      component: ECharts
+      component: import('page/DateVisualization/Echarts')
     }
   ]
 }]
