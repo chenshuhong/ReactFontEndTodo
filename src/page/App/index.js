@@ -6,14 +6,46 @@ import React from "react";
 import {
   HashRouter as Router,
   Route,
-  Switch
+  Switch,
+  Redirect
 } from 'react-router-dom'
 import Loadable from 'react-loadable'
 import RouterLoading from 'components/RouterLoading'
-import Sider from 'components/Sider/index'
-import NoMatch from 'page/NoMatch'
+import Sider from 'components/Sider'
 import style from './index.less'
 import routes from 'src/routes.config'
+import AuthContext from 'context/AuthContext'
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <AuthContext.Consumer>
+    {
+      auth=>(
+        <Route
+          {...rest}
+          render={props =>
+            auth.isAuthenticated ? (
+              <Component {...props} />
+            ) : (
+              <Redirect
+                to={{
+                  pathname: "/login",
+                  state: { from: props.location }
+                }}
+              />
+            )
+          }
+        />
+      )
+    }
+  </AuthContext.Consumer>
+);
+
+function getLoadableComponent(component) {
+  return Loadable({
+    loader: () => component,
+    loading: RouterLoading,
+  })
+}
 
 export default function (props) {
   function loopRoutes(routes,match={}){
@@ -28,24 +60,30 @@ export default function (props) {
                 return loopRoutes(routes,match)
               }}/>
             } else {
-              const LoadableComponent = Loadable({
-                loader: () => route.component,
-                loading: RouterLoading,
-              })
+              const LoadableComponent = getLoadableComponent(route.component)
               return (
-                <Route exact key={route.path} path={matchPath+route.path} component={LoadableComponent}/>
+                <PrivateRoute exact key={route.path} path={matchPath+route.path} component={LoadableComponent}/>
               )
             }
           })
         }
-        <Route component={NoMatch}/>
+        <Route exact path='/login' component={getLoadableComponent(import('page/Login'))}/>
+        <Route component={getLoadableComponent(import('page/NoMatch'))}/>
       </Switch>
     )
   }
   return (
     <Router>
       <div className={style.matchscreen}>
-        <Sider className={style.left} routes={routes}/>
+        <AuthContext.Consumer>
+          {
+            auth=>(
+              auth.isAuthenticated&&(
+                <Sider className={style.left} routes={routes}/>
+              )
+            )
+          }
+        </AuthContext.Consumer>
         <div  className={style.right}>
           {
             loopRoutes(routes)
