@@ -5,7 +5,10 @@
 import React from 'react'
 
 const AuthContext = React.createContext({
-    isAuthenticated:false
+    isAuthenticated: false,
+    onLogin: () => {
+      console.log('login success')
+    }
   }
 );
 
