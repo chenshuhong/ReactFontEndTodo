@@ -6,8 +6,8 @@ import React from 'react'
 
 const AuthContext = React.createContext({
     isAuthenticated: false,
-    onLogin: () => {
-      console.log('login success')
+    onLoginSuccess: () => {
+      console.log('please achieve in app.js')
     }
   }
 );

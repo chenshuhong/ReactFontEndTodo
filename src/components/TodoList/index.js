@@ -20,8 +20,8 @@ export default class extends React.Component{
   }
 
   updateValue(value,name){
+    console.log('todo list')
     let changeState = {}
-    console.log(Object.prototype.toString.call(name))
     if (Object.prototype.toString.call(name)==='[object Array]'){
       name.map((name,index)=>{
         changeState[name]=value[index]

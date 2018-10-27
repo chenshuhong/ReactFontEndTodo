@@ -5,14 +5,24 @@
 import React from 'react'
 import AuthContext from 'context/AuthContext'
 import {Button} from 'antd'
+import {Redirect, Route} from "react-router-dom";
 export default function (props) {
   return (
-    <AuthContext>
+    <AuthContext.Consumer>
       {
-        auth=>(
-          <Button onClick={auth.onLogin}>登录</Button>
+        auth => (
+          auth.isAuthenticated ? (
+            <Redirect
+              to={{
+                pathname: "/",
+                state: {from: props.location}
+              }}
+            />
+          ) : (
+            <Button onClick={auth.onLoginSuccess}>登录</Button>
+          )
         )
       }
-    </AuthContext>
+    </AuthContext.Consumer>
   )
 }
