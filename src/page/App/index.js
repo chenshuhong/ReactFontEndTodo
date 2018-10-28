@@ -12,6 +12,7 @@ import Loadable from 'react-loadable'
 import RouterLoading from 'components/RouterLoading'
 import Sider from 'components/Sider'
 import PrivateRoute from 'components/PrivateRoute'
+import LoginRoute from 'components/LoginRoute'
 import style from './index.less'
 import routes from 'src/routes.config'
 import AuthContext from 'context/AuthContext'
@@ -42,7 +43,7 @@ function loopRoutes(routes, match = {}) {
           }
         })
       }
-      <Route exact path='/login' component={getLoadableComponent(import('page/Login'))}/>
+      <LoginRoute exact path='/login' component={getLoadableComponent(import('page/Login'))}/>
       <Route component={getLoadableComponent(import('page/NoMatch'))}/>
     </Switch>
   )
@@ -60,10 +61,6 @@ export default class extends React.Component {
         }
       }
     }
-  }
-
-  onLoginSuccess(){
-
   }
 
   render() {

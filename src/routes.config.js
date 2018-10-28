@@ -10,7 +10,7 @@ let routes = [{
 }, {
   path: '/todolist',
   name: 'todolist',
-  component: import('components/TodoList')
+  component: import('page/TodoList')
 }, {
   path: '/datavisualization',
   name: '数据可视化',

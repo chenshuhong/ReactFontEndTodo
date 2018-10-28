@@ -4,7 +4,7 @@
  */
 import React from 'react'
 import { List,Input,Button,Modal } from 'antd';
-import TodoItem from '../TodoItem'
+import TodoItem from '../../components/TodoItem/index'
 
 export default class extends React.Component{
 
