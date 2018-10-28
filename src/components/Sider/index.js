@@ -11,12 +11,10 @@ class Sider extends React.Component {
   constructor(props){
     super(props)
     let nextOpenKeys = this.props.location.pathname.substring(1).split('/')
-    console.log(nextOpenKeys)
     nextOpenKeys.pop()
     nextOpenKeys = nextOpenKeys.map(key=>{
       return `/${key}`
     })
-    console.log(nextOpenKeys)
     this.state = {
       selectedKeys:[],
       openKeys:nextOpenKeys

@@ -56,10 +56,7 @@ export default class extends React.Component {
       auth:{
         isAuthenticated:false,
         onLoginSuccess: () => {
-          let changeState = Object.assign(this.state.auth,{
-            isAuthenticated:true
-          })
-          this.setState(changeState)
+          this.myUpdateState(true,'auth.isAuthenticated')
         }
       }
     }

@@ -8,29 +8,34 @@ import {cloneDeep} from 'lodash'
 import './index.less'
 import App from 'page/App'
 
-React.Component.prototype.myUpdateState = function (value, name) {
-  console.log('father')
-  let changeState = {}
-  if (Object.prototype.toString.call(name)==='[object Array]'){
-    name.map((name,index)=>{
-      changeState[name]=value[index]
+function changeMultiLayerState(state,changeState,name,value,){
+  let names = name.split('.')
+  if (names.length>1){
+    let firstName = names.shift()
+    let firstValue = cloneDeep(state[firstName])
+    let evalNameString = ''
+    names.map(name=>{
+      evalNameString+=`['${name}']`
     })
+    eval(`firstValue${evalNameString}=${value}`)
+    changeState[firstName] = firstValue
   } else {
     changeState[name]=value
   }
+}
+
+React.Component.prototype.myUpdateState = function (value, name) {
   this.setState((prevState,props)=>{
+    let changeState = {}
+    if (Object.prototype.toString.call(name)==='[object Array]'){
+      name.map((name,index)=>{
+        changeMultiLayerState(prevState,changeState,name,value[index])
+      })
+    } else {
+      changeMultiLayerState(prevState,changeState,name,value)
+    }
     return changeState
   })
-
-  /*let names = name.split('.')
-  names.map((name,index)=>{
-    if (index){
-
-    } else {
-      changeState[name] = this.state[name]
-    }
-  })
-  names.reduce()*/
 }
 
 const element = (
