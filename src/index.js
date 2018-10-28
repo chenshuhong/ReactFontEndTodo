@@ -4,10 +4,11 @@
  */
 import ReactDom from 'react-dom'
 import React from "react";
+import {cloneDeep} from 'lodash'
 import './index.less'
 import App from 'page/App'
 
-React.Component.prototype.updateModal = function (name, value) {
+React.Component.prototype.myUpdateState = function (value, name) {
   console.log('father')
   let changeState = {}
   if (Object.prototype.toString.call(name)==='[object Array]'){
@@ -17,7 +18,19 @@ React.Component.prototype.updateModal = function (name, value) {
   } else {
     changeState[name]=value
   }
-  this.setState(changeState)
+  this.setState((prevState,props)=>{
+    return changeState
+  })
+
+  /*let names = name.split('.')
+  names.map((name,index)=>{
+    if (index){
+
+    } else {
+      changeState[name] = this.state[name]
+    }
+  })
+  names.reduce()*/
 }
 
 const element = (
