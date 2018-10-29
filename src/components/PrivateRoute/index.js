@@ -4,30 +4,30 @@
  */
 import React from 'react'
 import {Redirect, Route} from "react-router-dom";
-import AuthContext from 'context/AuthContext'
+import { connect } from 'react-redux'
 
-export default function ({component: Component, ...rest}) {
+function PrivateRoute({component: Component,app, ...rest}) {
   return (
-    <AuthContext.Consumer>
-      {
-        auth => (
-          <Route
-            {...rest}
-            render={props =>
-              auth.isAuthenticated ? (
-                <Component {...props} />
-              ) : (
-                <Redirect
-                  to={{
-                    pathname: "/login",
-                    state: {from: props.location}
-                  }}
-                />
-              )
-            }
+    <Route
+      {...rest}
+      render={props =>
+        app.isAuthenticated ? (
+          <Component {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/login",
+              state: {from: props.location}
+            }}
           />
         )
       }
-    </AuthContext.Consumer>
+    />
   )
 }
+
+const mapStateToProps = state => ({
+  app: state.app
+})
+
+export default connect(mapStateToProps)(PrivateRoute)

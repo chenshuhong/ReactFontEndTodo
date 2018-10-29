@@ -15,7 +15,6 @@ import PrivateRoute from 'components/PrivateRoute'
 import LoginRoute from 'components/LoginRoute'
 import style from './index.less'
 import routes from 'src/routes.config'
-import AuthContext from 'context/AuthContext'
 
 function getLoadableComponent(component) {
   return Loadable({
@@ -53,38 +52,20 @@ function loopRoutes(routes, match = {}) {
 export default class extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      auth:{
-        isAuthenticated:false,
-        onLoginSuccess: () => {
-          this.myUpdateState(true,'auth.isAuthenticated')
-        }
-      }
-    }
   }
 
   render() {
     return (
-      <AuthContext.Provider value={this.state.auth}>
-        <Router>
-          <div className={style.matchscreen}>
-            <AuthContext.Consumer>
-              {
-                auth => (
-                  auth.isAuthenticated && (
-                    <Sider className={style.left} routes={routes}/>
-                  )
-                )
-              }
-            </AuthContext.Consumer>
-            <div className={style.right}>
-              {
-                loopRoutes(routes)
-              }
-            </div>
+      <Router>
+        <div className={style.matchscreen}>
+          <Sider className={style.left} routes={routes}/>
+          <div className={style.right}>
+            {
+              loopRoutes(routes)
+            }
           </div>
-        </Router>
-      </AuthContext.Provider>
+        </div>
+      </Router>
     )
   }
 }

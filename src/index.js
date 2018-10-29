@@ -4,6 +4,9 @@
  */
 import ReactDom from 'react-dom'
 import React from "react";
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import rootReducer from './reducers'
 import {cloneDeep} from 'lodash'
 import './index.less'
 import App from 'page/App'
@@ -25,7 +28,7 @@ function changeMultiLayerState(state,changeState,name,value,){
 }
 
 React.Component.prototype.myUpdateState = function (value, name) {
-  this.setState((prevState,props)=>{
+  this.setState((prevState)=>{
     let changeState = {}
     if (Object.prototype.toString.call(name)==='[object Array]'){
       name.map((name,index)=>{
@@ -38,7 +41,10 @@ React.Component.prototype.myUpdateState = function (value, name) {
   })
 }
 
+const store = createStore(rootReducer)
 const element = (
-  <App/>
+  <Provider store={store}>
+    <App/>
+  </Provider>
 )
 ReactDom.render(element,document.getElementById('root'))

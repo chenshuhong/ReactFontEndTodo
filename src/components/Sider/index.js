@@ -5,7 +5,9 @@
 import React from 'react'
 import { Menu, Icon } from 'antd';
 import {Link,withRouter} from 'react-router-dom'
+import { connect } from 'react-redux'
 const SubMenu = Menu.SubMenu;
+
 class Sider extends React.Component {
 
   constructor(props){
@@ -37,6 +39,7 @@ class Sider extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps,prevState){
+    console.log(nextProps)
     let state = {}
 
     let pathname = nextProps.location.pathname
@@ -55,7 +58,8 @@ class Sider extends React.Component {
   }
 
   render() {
-    return (
+    let isAuthenticated = this.props.isAuthenticated
+    return isAuthenticated&&(
       <Menu
         mode="inline"
         theme="dark"
@@ -70,5 +74,7 @@ class Sider extends React.Component {
     );
   }
 }
-
-export default withRouter(Sider)
+const mapStateToProps = state => ({
+  isAuthenticated: state.app.isAuthenticated
+})
+export default withRouter(connect(mapStateToProps)(Sider))
