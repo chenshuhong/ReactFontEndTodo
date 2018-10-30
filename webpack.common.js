@@ -42,8 +42,8 @@ module.exports = {
       src:path.resolve(__dirname,'src'),
       components:path.resolve(__dirname,'src/components'),
       page:path.resolve(__dirname,'src/page'),
-      context:path.resolve(__dirname,'src/context'),
-      reducer:path.resolve(__dirname,'src/reducers')
+      reducer:path.resolve(__dirname,'src/reducers'),
+      utils:path.resolve(__dirname,'src/utils')
     }
   },
   module: {

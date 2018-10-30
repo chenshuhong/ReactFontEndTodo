@@ -2,10 +2,6 @@
  * @Author: 陈树鸿
  * @Date: 2018-10-29
  */
-/**
- * @Author: 陈树鸿
- * @Date: 2018--17
- */
 import React from 'react'
 import {Redirect, Route} from "react-router-dom";
 import { connect } from 'react-redux'

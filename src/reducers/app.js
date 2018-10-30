@@ -2,6 +2,7 @@
  * @Author: 陈树鸿
  * @Date: 2018-10-30
  */
+import {sleep} from 'utils/commonUtil'
 //types
 const LOGIN_ING = 'LOGIN_ING'
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
@@ -19,11 +20,10 @@ const onLoginIng = () => ({
 })
 
 export function login() {
-  return dispatch => {
+  return async (dispatch) => {
     dispatch(onLoginIng())
-    setTimeout(function () {
-      dispatch(onLoginError())
-    },5000)
+    await sleep(5000)
+    dispatch(onLoginSuccess())
   }
 }
 
