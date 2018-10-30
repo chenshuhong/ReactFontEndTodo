@@ -43,7 +43,7 @@ module.exports = {
       components:path.resolve(__dirname,'src/components'),
       page:path.resolve(__dirname,'src/page'),
       context:path.resolve(__dirname,'src/context'),
-      actions:path.resolve(__dirname,'src/actions')
+      reducer:path.resolve(__dirname,'src/reducers')
     }
   },
   module: {

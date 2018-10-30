@@ -39,9 +39,7 @@ class Sider extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps,prevState){
-    console.log(nextProps)
     let state = {}
-
     let pathname = nextProps.location.pathname
     let nextSelectedKeys = [pathname]
     if (prevState.selectedKeys !== nextSelectedKeys){

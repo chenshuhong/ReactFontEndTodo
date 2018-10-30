@@ -4,7 +4,8 @@
  */
 import ReactDom from 'react-dom'
 import React from "react";
-import { createStore } from 'redux'
+import { createStore,applyMiddleware,compose} from 'redux'
+import ReduxThunk from 'redux-thunk'
 import { Provider } from 'react-redux'
 import rootReducer from './reducers'
 import {cloneDeep} from 'lodash'
@@ -41,7 +42,11 @@ React.Component.prototype.myUpdateState = function (value, name) {
   })
 }
 
-const store = createStore(rootReducer)
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(ReduxThunk))
+)
 const element = (
   <Provider store={store}>
     <App/>

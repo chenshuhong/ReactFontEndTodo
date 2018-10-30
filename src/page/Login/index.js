@@ -5,7 +5,8 @@
 import React from 'react'
 import {Button} from 'antd'
 export default function (props) {
+  console.log(props)
   return (
-    <Button onClick={props.onLoginSuccess}>登录</Button>
+    <Button onClick={props.onLoginSuccess} loading={props.isLoginIng}>登录</Button>
   )
 }

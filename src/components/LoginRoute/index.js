@@ -9,9 +9,9 @@
 import React from 'react'
 import {Redirect, Route} from "react-router-dom";
 import { connect } from 'react-redux'
-import {onLoginSuccess} from 'actions/app'
+import {login} from 'reducer/app'
 
-function LoginRoute({component: Component,isAuthenticated,onLoginSuccess, ...rest}) {
+function LoginRoute({component: Component,isAuthenticated,isLoginIng,onLoginSuccess, ...rest}) {
   return (
     <Route
       {...rest}
@@ -24,7 +24,7 @@ function LoginRoute({component: Component,isAuthenticated,onLoginSuccess, ...res
             }}
           />
         ) : (
-          <Component {...props} onLoginSuccess={onLoginSuccess}/>
+          <Component {...props} isLoginIng={isLoginIng} onLoginSuccess={onLoginSuccess}/>
         )
       )}/>
   )
@@ -32,11 +32,11 @@ function LoginRoute({component: Component,isAuthenticated,onLoginSuccess, ...res
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.app.isAuthenticated
+  ...state.app
 })
 
 const mapDispatchToProps = dispatch => ({
-  onLoginSuccess: () => dispatch(onLoginSuccess())
+  onLoginSuccess: () => dispatch(login())
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(LoginRoute)
