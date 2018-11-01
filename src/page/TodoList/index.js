@@ -4,9 +4,14 @@
  */
 import React from 'react'
 import { List,Input,Button,Modal } from 'antd';
-import TodoItem from '../../components/TodoItem/index'
+import TodoItem from 'components/TodoItem'
+import {connect} from "react-redux";
+import {injectReducer } from 'reducer/index'
+import reducer from './reducer'
 
-export default class extends React.Component{
+injectReducer('todolist',reducer)
+
+class TodoList extends React.Component{
 
   constructor(props){
     super(props)
@@ -17,6 +22,10 @@ export default class extends React.Component{
       updateValue:'',
       updateIndex:''
     }
+  }
+
+  componentDidMount(){
+
   }
 
   addTodoItem(){
@@ -44,9 +53,10 @@ export default class extends React.Component{
 
   render(){
     let state = this.state
+    let {data} = this.props
     return (
       <div className='mg1'>
-        <List bordered dataSource={state.data} renderItem={(item,index)=>(<TodoItem key={index} item={item} showEditModel={()=>this.showEditModel(index)} onDeleteItem={()=>this.deleteItem(index)}/>)}/>
+        <List bordered dataSource={data} renderItem={(item,index)=>(<TodoItem key={index} item={item} showEditModel={()=>this.showEditModel(index)} onDeleteItem={()=>this.deleteItem(index)}/>)}/>
         <div className='mg1t flex-box'>
           <Input className='flex-grow-1' placeholder={'please input...'} value={state.inputValue} onChange={(e)=>this.myUpdateState(e.target.value,'inputValue')}/>
           <Button disabled={!state.inputValue} type='primary' className='mg1l' onClick={()=>this.addTodoItem()}>添加</Button>
@@ -63,3 +73,9 @@ export default class extends React.Component{
   }
 
 }
+
+const mapStateToProps = state => ({
+  ...state.todolist
+})
+
+export default connect(mapStateToProps)(TodoList)

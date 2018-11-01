@@ -14,7 +14,7 @@ import Sider from 'components/Sider'
 import PrivateRoute from 'components/PrivateRoute'
 import LoginRoute from 'components/LoginRoute'
 import style from './index.less'
-import routes from 'src/routes.config'
+import routes from 'config/routes.config'
 
 function getLoadableComponent(component) {
   return Loadable({

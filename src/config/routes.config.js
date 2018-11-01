@@ -6,11 +6,12 @@
 let routes = [{
   path: '/',
   name: '首页',
-  component: import('page/Home')
+  component: import('page/Home/index')
 }, {
   path: '/todolist',
   name: 'todolist',
-  component: import('page/TodoList')
+  component: import('page/TodoList/index'),
+  reducer: import('page/TodoList/reducer')
 }, {
   path: '/datavisualization',
   name: '数据可视化',
@@ -18,7 +19,7 @@ let routes = [{
     {
       path: '/echarts',
       name: 'Echarts',
-      component: import('page/DateVisualization/Echarts')
+      component: import('page/DateVisualization/ECharts/index')
     }
   ]
 }]

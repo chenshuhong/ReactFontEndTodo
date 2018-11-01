@@ -1,5 +1,7 @@
 const presets = [
-  ["@babel/env"],["@babel/preset-react"]
+  ["@babel/env",{
+  useBuiltIns:'usage'
+  }],["@babel/preset-react"]
 ];
 
 const plugins = [

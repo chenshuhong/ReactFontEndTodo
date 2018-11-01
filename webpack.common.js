@@ -21,7 +21,7 @@ function getCssModuleLoaders(isOpenCssModule,isLess) {
 }
 
 module.exports = {
-  entry: './src/index.js',
+  entry: ['@babel/polyfill','./src/index.js'],
   devServer: {
     contentBase: './dist'
   },
@@ -43,7 +43,8 @@ module.exports = {
       components:path.resolve(__dirname,'src/components'),
       page:path.resolve(__dirname,'src/page'),
       reducer:path.resolve(__dirname,'src/reducers'),
-      utils:path.resolve(__dirname,'src/utils')
+      utils:path.resolve(__dirname,'src/utils'),
+      config:path.resolve(__dirname,'src/config')
     }
   },
   module: {
